@@ -21,7 +21,7 @@ public class MandelbrotView extends View {
     private Paint paint;
     private int width;
     private int height;
-    private int maxIteration = 400;
+    private int maxIteration = 700;
     private double x0;
     private double x1;
     private double y0;
