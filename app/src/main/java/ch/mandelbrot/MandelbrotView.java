@@ -32,7 +32,7 @@ public class MandelbrotView extends View {
     private double new_y1;
 
     private ArrayList<Color> gradient = new ArrayList();
-    private int gradientSize = 40;
+    private int gradientSize = 100;
 
     private Bitmap imageData;
     private Bitmap toRestoreData;

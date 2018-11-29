@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowMandelbrotActivity"></activity>
+        <activity android:name=".MandelbrotActivity"></activity>
+        <activity android:name=".JuliaActivity"></activity>
     </application>
 
 </manifest>

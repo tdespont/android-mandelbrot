@@ -12,12 +12,22 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/generateMandelbrot"
+            android:id="@+id/showMandelbrot"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:background="@color/colorPrimary"
-            android:text="Generate" />
+            android:text="Mandelbrot" />
+
+        <Button
+            android:id="@+id/showJulia"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorPrimary"
+            android:text="Julia" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

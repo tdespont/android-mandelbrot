@@ -8,26 +8,33 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button generateMandelbrotButton;
+    private Button showMandelbrotButton;
+    private Button showJuliaButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        generateMandelbrotButton = (Button) findViewById(R.id.generateMandelbrot);
+        showMandelbrotButton = (Button) findViewById(R.id.showMandelbrot);
 
-        generateMandelbrotButton.setOnClickListener(new View.OnClickListener() {
+        showMandelbrotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Starting a new Intent
-                Intent  showMandelbrotScreen = new Intent(getApplicationContext(), ShowMandelbrotActivity.class);
+                Intent mandelbrotActivity = new Intent(getApplicationContext(), MandelbrotActivity.class);
+                startActivity(mandelbrotActivity);
+            }
+        });
 
-                //Sending data to another Activity
-                //nextScreen.putExtra("name", inputName.getText().toString());
-                //nextScreen.putExtra("email", inputEmail.getText().toString());
+        showJuliaButton = (Button) findViewById(R.id.showJulia);
 
-                startActivity(showMandelbrotScreen);
+        showJuliaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Starting a new Intent
+                Intent showJuliaActivity = new Intent(getApplicationContext(), JuliaActivity.class);
+                startActivity(showJuliaActivity);
             }
         });
     }
