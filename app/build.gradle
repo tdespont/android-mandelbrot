@@ -1,9 +1,39 @@
+plugins {
+    id "org.sonarqube" version "2.6"
+}
+
 apply plugin: 'com.android.application'
+
+/*apply plugin: "java"*/
+apply plugin: "maven-publish"
+
+/*task sourceZip(type: Zip) {
+    from sourceSets.findAll()
+    classifier "sources"
+}*/
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ch.mandelbrot.tdespont'
+            artifactId = 'android-mandelbrot'
+            version = '1.0'
+            /*artifact sourceZip*/
+            /*from components.java*/
+        }
+    }
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = "http://localhost:8081/repository/tdespont"
+        }
+    }
+}
 
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "ch.mandelbrot"
+        applicationId "ch.mandelbrot.fractaloid"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -15,7 +45,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {

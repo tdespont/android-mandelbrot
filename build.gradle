@@ -1,19 +1,78 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
+apply plugin: "java"
+apply plugin: "maven-publish"
+
+task sourceZip(type: Zip) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ch.mandelbrot.tdespont'
+            artifactId = 'android-mandelbrot'
+            version = '1.0'
+            /*artifact sourceZip*/
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = "http://localhost:8081/repository/tdespont"
+        }
+    }
+}
+
+/*plugins {
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ch.mandelbrot.tdespont'
+            artifactId = 'android-mandelbrot'
+            version = '1.0'
+        }
+    }
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = "http://localhost:8081/repository/tdespont"
+        }
+    }
+}*/
+
+/*
+plugins {
+    id 'maven'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://localhost:8081/repository/tdespont")
+        }
+    }
+}*/
 
 allprojects {
     repositories {
@@ -22,6 +81,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+/*task clean(type: Delete) {
     delete rootProject.buildDir
-}
+}*/
