@@ -141,7 +141,9 @@ public class MandelbrotActivity extends Activity {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             //Log.d("onScroll","{"+distanceX+","+distanceY+"},");
-            renderMandelbrot(x0 + distanceX/200*mScaleFactor, y0 + distanceY/200*mScaleFactor);
+            if (!isDrawing.get()) {
+                renderMandelbrot(x0 + distanceX / 200 * mScaleFactor, y0 + distanceY / 200 * mScaleFactor);
+            }
             return true;
         }
     }
@@ -149,15 +151,16 @@ public class MandelbrotActivity extends Activity {
     class MyScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
+            if (!isDrawing.get()) {
+                mScaleFactor *= detector.getScaleFactor();
 
-            float x = detector.getFocusX();
-            float y = detector.getFocusY();
-            //Log.d("onScale","{"+x+","+y+"},");
+                float x = detector.getFocusX();
+                float y = detector.getFocusY();
+                //Log.d("onScale","{"+x+","+y+"},");
 
-            // Don't let the object get too small or too large.
-            mScaleFactor = Math.max(0.0001f, Math.min(mScaleFactor, 1.0f));
-            //Log.d("mScaleFactor","{"+mScaleFactor+"},");
+                // Don't let the object get too small or too large.
+                mScaleFactor = Math.max(0.0001f, Math.min(mScaleFactor, 1.0f));
+                //Log.d("mScaleFactor","{"+mScaleFactor+"},");
 
             /*x0 = -2.8f;
             float x1 = 1.2f;
@@ -165,9 +168,10 @@ public class MandelbrotActivity extends Activity {
             float y1 = -y0; //1.2;
             float rx = (x1 - x0) / mWidth;
             float ry = (y1 - y0) / mHeight;*/
-            mScript.set_rx(rx*mScaleFactor);
-            mScript.set_ry(ry*mScaleFactor);
-            renderMandelbrot(x0, y0);
+                mScript.set_rx(rx * mScaleFactor);
+                mScript.set_ry(ry * mScaleFactor);
+                renderMandelbrot(x0, y0);
+            }
             return true;
         }
     }
